@@ -1,0 +1,355 @@
+/* Basic Css */
+
+/* Typography */
+/* @font-face {
+  font-family: ''Didact Gothic'';
+  src: local(''Didact Gothic''), url(./assets/fonts/'Didact Gothic'\ Gothic.ttf) format('truetype');
+} */
+
+.nav-links{
+  font-family: 'Didact Gothic';
+  font-size: 16px;
+
+}
+
+.hero-heading{
+  font-size: 50px;
+  font-family: 'Didact Gothic';
+  color: #707070;
+
+}
+.hero-text{
+  font-size: 25px;
+  font-family: 'Didact Gothic';
+  color: #707070;
+}
+
+.base-text{
+  font-size: 18px;
+  font-family: 'Didact Gothic';
+
+}
+
+.section-headings{
+  font-size: 2rem;
+  font-family: 'Didact Gothic';
+}
+.section-headings-sm{
+  font-size: 1rem;
+  font-family: 'Didact Gothic';
+}
+
+.btn-text{
+  font-size: 16px;
+  font-family: 'Didact Gothic';
+}
+
+.text-black{
+  color:black !important;
+}
+.text-white{
+  color:white  !important
+}
+.text-grey{
+  color: #707070  !important;
+}
+
+.text-red{
+  color: #F1071F !important;
+}
+.base-color{
+  color:#04B2AE
+}
+
+.font{
+  font-family: 'Didact Gothic';
+}
+
+.login-text{
+  font-size: 1.5rem !important;
+  font-family: 'Didact Gothic';
+}
+
+.bold{
+  font-weight: bold !important;
+}
+/* Typography */
+
+
+/* Navbar */
+
+.bg-white{
+  background-color: white !important;
+}
+.bg-blue{
+  background-color: #0EB5B1 !important;
+
+}
+
+.bg-pink{
+  background-color: #F25C96 !important;
+}
+
+.nav-logo{
+  width:50%;
+}
+
+.border-btn{
+  border: 1px solid #0EB5B1 !important;
+  background-color: transparent !important;
+  color:#0EB5B1 !important;
+}
+
+.margin-right-20{
+margin-right: 20px;
+}
+
+.grey-box-shadow{
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.align-items-center{
+  align-items: center;
+}
+
+
+
+/* Navbar */
+
+/* width */
+
+.w-100{
+width:100%;
+}
+.w-80{
+  width: 80%;
+}
+/* width */
+
+/* paddings */
+.padding-sides-100{
+padding: 0 100px
+}
+
+.padding-btn{
+  padding: 5px 25px !important
+  }
+  
+
+.padding-bottom-10{
+  padding-bottom:  10px  !important
+  }
+
+.padding-top-10{
+  padding-top: 10px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .padding-sides-100{
+    padding: 0 20px
+    }
+
+}
+/* paddings */
+
+/* margin */
+.m-auto{
+  margin: auto;
+}
+.m-left{
+  margin-left: 5px;
+}
+
+.m-top-10{
+  margin-top: 10px;
+}
+/* margin */
+
+
+
+/* Feature Section */
+
+.features-div {
+  font-family: "'Didact Gothic'", sans-serif;
+	color: white;
+  font-weight: 300;
+}
+
+.features-div h1, .features-div h2, .features-div h3, .features-div h4, .features-div h5, .features-div h6 {
+  color: white;
+
+}
+
+.features-div .font-weight-medium {
+	font-weight: 500;
+}
+
+.features-div .wrap-features-div {
+  margin-top: 60px;
+}
+
+.features-div .wrap-features-div .text-box {
+  padding: 0 30px;
+}
+
+.features-div .wrap-features-div .text-box h3 {
+  margin: 10px 0 25px 0;
+}
+
+/* .features-div .text-info {
+	color: black !important;
+} */
+
+/* .features-div .text-megna {
+	color: black;
+} */
+
+.features-div .img-shadow {
+    -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.3);
+    box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.3);
+    margin-top: 20px;
+}
+
+.features-div .btn-info-gradiant {
+		background: #188ef4;
+    background: -webkit-linear-gradient(legacy-direction(to right), #188ef4 0%, #316ce8 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#188ef4), to(#316ce8));
+    background: -webkit-linear-gradient(left, #188ef4 0%, #316ce8 100%);
+    background: -o-linear-gradient(left, #188ef4 0%, #316ce8 100%);
+    background: linear-gradient(to right, #188ef4 0%, #316ce8 100%);
+}
+
+.features-div .btn-info-gradiant:hover {
+		background: #316ce8;
+    background: -webkit-linear-gradient(legacy-direction(to right), #316ce8 0%, #188ef4 100%);
+    background: -webkit-gradient(linear, left top, right top, from(#316ce8), to(#188ef4));
+    background: -webkit-linear-gradient(left, #316ce8 0%, #188ef4 100%);
+    background: -o-linear-gradient(left, #316ce8 0%, #188ef4 100%);
+    background: linear-gradient(to right, #316ce8 0%, #188ef4 100%);
+}
+
+.features-div .btn-md {
+    padding: 15px 45px;
+    font-size: 16px;
+}
+
+.order-1{
+  order:1
+}
+/* Feature Section */
+
+
+/* how it works Section */
+.service-1 {
+  font-family: "'Didact Gothic'", sans-serif;
+  color: #8d97ad;
+  font-weight: 300;
+}
+
+.service-1 .font-weight-medium {
+  font-weight: 500;
+}
+
+/* .service-1 .bg-light {
+  background-color: #f4f8fa !important;
+} */
+
+/* .service-1 .subtitle {
+  color: #8d97ad;
+  line-height: 24px;
+} */
+
+.service-1 .card.card-shadow {
+  -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+  box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+}
+
+.service-1 .wrap-service1-box .card-body {
+  padding: 40px;
+}
+
+
+/* how it works Section */
+
+/* Authentication Screens */
+
+.form-container{
+  
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  
+  justify-content: center;
+
+  
+}
+.form{
+
+  width: 320px; 
+  /* height: 50%; */
+  border-radius: 20px;
+  border:1px solid #707070;
+
+}
+.login-logo{
+  width:40%;
+}
+.logo-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-title{
+  padding: 20px;
+
+  text-transform: uppercase;
+  /* background-color: #04B2AE; */
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+
+}
+
+.input-container{
+  width: 80% !important;
+
+}
+.input-icon{
+  width: 20px;
+}
+/* Authentication Screens */
+
+
+/* Button */
+.btn-success-gradiant {
+  background: #2cdd9b;
+  background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#2cdd9b), to(#1dc8cc));
+  background: -webkit-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+  background: -o-linear-gradient(left, #2cdd9b 0%, #1dc8cc 100%);
+  background: linear-gradient(to right, #2cdd9b 0%, #1dc8cc 100%);
+  border: 0px;
+}
+
+ .btn-success-gradiant:hover {
+  background: #1dc8cc;
+  background: -webkit-linear-gradient(legacy-direction(to right), #1dc8cc 0%, #2cdd9b 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#1dc8cc), to(#2cdd9b));
+  background: -webkit-linear-gradient(left, #1dc8cc 0%, #2cdd9b 100%);
+  background: -o-linear-gradient(left, #1dc8cc 0%, #2cdd9b 100%);
+  background: linear-gradient(to right, #1dc8cc 0%, #2cdd9b 100%);
+}
+
+.btn-md {
+  padding: 15px 45px;
+  font-size: 16px;
+}
+
+.btn-danger{
+  background: red;
+ 
+  border: 0px;
+}
+
+/* Button */
