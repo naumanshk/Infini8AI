@@ -29,10 +29,10 @@ class home extends Component {
 
     render(){
 
-        // if (localStorage.getItem("Teacher") == null ){
-        //     console.log('null')
-        //     return <Redirect to="/teacherlogin" />
-        // }
+        if (!localStorage.getItem("Login")){
+            console.log('null')
+            return <Redirect to="/adminlogin" />
+        }
 
         return (
             <React.Fragment>

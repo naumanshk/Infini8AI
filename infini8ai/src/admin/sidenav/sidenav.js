@@ -19,9 +19,14 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from "react-router-dom";
 import { Container } from 'reactstrap';
 import logo from '../../Images/logo.png'
-import Dash from '../dashboard/dashboard.js'
-import Sub from './SubMenu.js'
+
 import { fire } from '../../config.js';
+
+import Routes from '../routes.js'
+import Sub from './SubMenu.js'
+import Addgroups from '../groups/groupForm.js'
+import Groups from '../groups/groups.js'
+
 
 
 const drawerWidth = 240;
@@ -29,6 +34,10 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'row'
+        },
 
     },
     drawer: {
@@ -45,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+        color: '#04B2AE',
+        justifyContent: 'start',
         [theme.breakpoints.up('sm')]: {
             display: 'none',
         },
@@ -58,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+
     },
 }));
 
@@ -74,17 +86,17 @@ function ResponsiveDrawer(props) {
         fire.auth().signOut();
         localStorage.removeItem("Login")
         // localStorage.clear()
-        window.location.href='/adminlogin'
-        
-        
-    
-      }
-    
+        window.location.href = '/adminlogin'
+
+
+
+    }
+
 
     const drawer = (
         <div>
-            
-            <div style={{display:'flex', justifyContent:'center'}}>
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <img src={logo}></img>
 
             </div>
@@ -103,7 +115,7 @@ function ResponsiveDrawer(props) {
                         <ListItemText primary='User Verification' />
                     </ListItem>
                 </Link>
-                <Link to='/admin'>
+                <Link to='/admin/groups'>
                     <ListItem className='nav-links text-white' button key='groups'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
                         <ListItemText primary='Groups' />
@@ -135,22 +147,16 @@ function ResponsiveDrawer(props) {
     return (
         <div className={classes.root}>
             {/* <CssBaseline /> */}
-            {/* <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Responsive drawer
-          </Typography>
-                </Toolbar>
-            </AppBar> */}
+            <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className={classes.menuButton}
+                style={{ paddingLeft: '30px' }}
+            >
+                <MenuIcon />
+            </IconButton>
             <nav className={classes.drawer} aria-label="mailbox folders">
                 {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                 <Hidden smUp implementation="css">
@@ -185,19 +191,11 @@ function ResponsiveDrawer(props) {
             <main className={classes.content}>
                 {/* <div className={classes.toolbar} /> */}
 
-                <Container>
 
+                <Switch>
+                    <Route path="/admin" component={Routes} />
 
-                    <Switch>
-                        <Route exact path="/admin" component={Dash} />
-                        <Route exact path="/admin/sub" component={Sub} />
-
-
-
-                    </Switch>
-
-
-                </Container>
+                </Switch>
 
 
             </main>
