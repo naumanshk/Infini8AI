@@ -165,7 +165,7 @@ class loginComponent extends Component {
                         <div class="col-md-12 mt-3 text-center">
                             <p className='base-text '>Login as <a class="base-text" href="/login"><span className='base-color'>Employee</span></a>  </p>
 
-                            <p class="base-text"><a class="base-text" href=""><span className='base-color'>Sign Up</span></a> to register with us</p>
+                            {/* <p class="base-text"><a class="base-text" href=""><span className='base-color'>Sign Up</span></a> to register with us</p> */}
 
                         </div>
 

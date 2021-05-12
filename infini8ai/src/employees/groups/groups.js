@@ -56,7 +56,8 @@ class groups extends Component {
     }
 
     getData() {
-        const url = `${process.env.REACT_APP_API_KEY}/groups`;
+        const url = `${process.env.REACT_APP_API_KEY}/groups/bymember/${localStorage.getItem('email')}`; //${process.env.REACT_APP_API_KEY}/groups 
+
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -80,9 +81,9 @@ class groups extends Component {
         return (
             <Container>
                 <h1 className='section-headings base-color padding-bottom-10'>Groups
-                <div class="col-md-12 mt-3 ">
+                {/* <div class="col-md-12 mt-3 ">
                                     <a href='/admin/addgroups' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
-                                </div>
+                                </div> */}
                 </h1>
                 
 

@@ -103,7 +103,7 @@ class loginComponent extends Component {
 
         if (localStorage.getItem("Login") && localStorage.getItem('userType') ==1 ) {
 
-            return <Redirect to="/admin/" />;
+            return <Redirect to="/employees/" />;
         } else {
 
 
@@ -164,7 +164,7 @@ class loginComponent extends Component {
                             {/* <p className='base-text text-red'>Forgot Password ?</p> */}
                             <p className='base-text '>Login as <a class="base-text" href="/admin/login"><span className='base-color'>Admin</span></a>  </p>
 
-                            <p class="base-text"><a class="base-text" href=""><span className='base-color'>Sign Up</span></a> to register with us</p>
+                            <p class="base-text"><a class="base-text" href="/register"><span className='base-color'>Sign Up</span></a> to register with us</p>
 
                         </div>
 

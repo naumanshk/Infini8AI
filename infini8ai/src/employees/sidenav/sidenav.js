@@ -23,9 +23,6 @@ import logo from '../../Images/logo.png'
 import { fire } from '../../config.js';
 
 import Routes from '../routes.js'
-import Sub from './SubMenu.js'
-import Addgroups from '../groups/groupForm.js'
-import Groups from '../groups/groups.js'
 
 
 
@@ -86,7 +83,7 @@ function ResponsiveDrawer(props) {
         fire.auth().signOut();
         localStorage.removeItem("Login")
         // localStorage.clear()
-        window.location.href = '/adminlogin'
+        window.location.href = '/login'
 
 
 
@@ -103,32 +100,32 @@ function ResponsiveDrawer(props) {
             <Divider />
             <List>
 
-                <Link to='/admin'>
+                <Link to='/employees'>
                     <ListItem style={{ textUnderlinePosition: 'under' }} className='nav-links text-white' button key='Admin'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
-                        <ListItemText primary='Admin' />
+                        <ListItemText primary='Dashboard' />
                     </ListItem>
                 </Link>
-                <Link to='/admin/sub'>
+                {/* <Link to='/employees/sub'>
                     <ListItem className='nav-links text-white' button key='verification'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
                         <ListItemText primary='User Verification' />
                     </ListItem>
-                </Link>
-                <Link to='/admin/groups'>
+                </Link> */}
+                <Link to='/employees/groups'>
                     <ListItem className='nav-links text-white' button key='groups'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
                         <ListItemText primary='Groups' />
                     </ListItem>
                 </Link>
-                <Link to='/admin/tasks2'>
+                <Link to='/employees/tasks2'>
                     <ListItem className='nav-links text-white' button key='tasks'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
                         <ListItemText primary='Tasks' />
                     </ListItem>
                 </Link>
 
-                <Link to='/admin/meetings'>
+                <Link to='/employees/meetings'>
                     <ListItem className='nav-links text-white' button key='meetings'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>
                         <ListItemText primary='Meetings' />
@@ -200,7 +197,7 @@ function ResponsiveDrawer(props) {
 
 
                 <Switch>
-                    <Route path="/admin" component={Routes} />
+                    <Route path="/employees" component={Routes} />
 
                 </Switch>
 

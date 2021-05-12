@@ -349,6 +349,13 @@ padding: 0 100px
 
 
 /* Button */
+.progress-btn{
+  padding:5px 10px;
+  border-radius:25px;
+  font-size: 12px;
+  cursor: pointer;
+
+}
 .btn-success-gradiant {
   background: #2cdd9b;
   background: -webkit-linear-gradient(legacy-direction(to right), #2cdd9b 0%, #1dc8cc 100%);
@@ -391,4 +398,37 @@ padding: 0 100px
   justify-content: space-between;
   align-items: center;
   border: none;
+}
+
+.task-container{
+  display: flex;
+  width: 100%;
+}
+
+.task-assiigned{
+  width: 33.33%;
+  background-color: #F5F5F5;
+  margin-left: 10px;
+  padding:10px
+}
+
+@media only screen and (max-width: 768px)  {
+  .task-container{
+    flex-wrap: wrap;
+   
+    }
+    .task-assiigned{
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+}
+
+
+.task-card{
+  background-color: white;
+  border-radius: 10px;
+  padding:10px;
+  margin-bottom: 10px;
+
 }

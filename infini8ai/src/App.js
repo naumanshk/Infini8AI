@@ -8,6 +8,9 @@ import Login from './Components/Auth/login'
 import Admin from './admin/home.js'
 import AdminLogin from './admin/Auth/login.js'
 
+import Employee from './employees/home.js'
+
+
 
 
 
@@ -26,6 +29,8 @@ function App() {
           <Route  path="/adminlogin" component={AdminLogin} />
 
           <Route  path="/admin" component={Admin} />
+          <Route  path="/employees" component={Employee} />
+          
 
         
 

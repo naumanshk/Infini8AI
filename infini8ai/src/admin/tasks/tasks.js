@@ -15,13 +15,12 @@ require('dotenv').config()
 
 
 
-
 class groups extends Component {
     constructor() {
         super()
         this.state = {
             employees: [],
-            groups: []
+            tasks:[]
         }
     }
 
@@ -32,12 +31,13 @@ class groups extends Component {
         this.getData().then((response) => {
 
             this.setState({
-                groups: response.data,
+                tasks: response.data,
 
             });
             console.log(response.data)
 
         });
+        console.log(process.env.REACT_APP_API_KEY)
     }
 
     getEmployees() {
@@ -56,7 +56,7 @@ class groups extends Component {
     }
 
     getData() {
-        const url = `${process.env.REACT_APP_API_KEY}/groups`;
+        const url = `${process.env.REACT_APP_API_KEY}/tasks`;
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -79,9 +79,9 @@ class groups extends Component {
         }
         return (
             <Container>
-                <h1 className='section-headings base-color padding-bottom-10'>Groups
+                <h1 className='section-headings base-color padding-bottom-10'>Tasks
                 <div class="col-md-12 mt-3 ">
-                                    <a href='/admin/addgroups' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
+                                    <a href='/admin/addtasks' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
                                 </div>
                 </h1>
                 
@@ -92,16 +92,18 @@ class groups extends Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Members</th>
+                            <th>Group</th>
+
 
 
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.groups.map((item, i) => {
+                        {this.state.tasks.map((item, i) => {
                             return (
                                 <tr>
                                     <th scope="row">{i + 1}</th>
-                                    <td>{item.name}</td>
+                                    <td>{item.task}</td>
 
                                     <td>
                                         {item.members.length > 0 &&
@@ -109,6 +111,21 @@ class groups extends Component {
                                             item.members.map((mem, m) => {
                                                 return (
                                                     <div >{mem.user.userName}</div>
+
+                                                )
+
+                                            })
+
+
+                                        }
+                                    </td>
+
+                                    <td>
+                                        {item.groups.length > 0 &&
+
+                                            item.groups .map((group, g) => {
+                                                return (
+                                                    <div >{group.user.name}</div>
 
                                                 )
 

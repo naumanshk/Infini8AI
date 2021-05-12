@@ -16,12 +16,12 @@ require('dotenv').config()
 
 
 
-class groups extends Component {
+class meetings extends Component {
     constructor() {
         super()
         this.state = {
             employees: [],
-            groups: []
+            meetings: []
         }
     }
 
@@ -32,7 +32,7 @@ class groups extends Component {
         this.getData().then((response) => {
 
             this.setState({
-                groups: response.data,
+                meetings: response.data,
 
             });
             console.log(response.data)
@@ -56,7 +56,7 @@ class groups extends Component {
     }
 
     getData() {
-        const url = `${process.env.REACT_APP_API_KEY}/groups`;
+        const url = `${process.env.REACT_APP_API_KEY}/meetings`;
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -81,42 +81,36 @@ class groups extends Component {
             <Container>
                 <h1 className='section-headings base-color padding-bottom-10'>Groups
                 <div class="col-md-12 mt-3 ">
-                                    <a href='/admin/addgroups' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
-                                </div>
+                        <a href='/admin/addmeetings' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
+                    </div>
                 </h1>
-                
+
 
                 <Table>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Members</th>
+                            <th>Meeting ID</th>
+                            <th>Passcode</th>
+
 
 
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.groups.map((item, i) => {
+                        {this.state.meetings.map((item, i) => {
                             return (
                                 <tr>
                                     <th scope="row">{i + 1}</th>
                                     <td>{item.name}</td>
-
-                                    <td>
-                                        {item.members.length > 0 &&
-
-                                            item.members.map((mem, m) => {
-                                                return (
-                                                    <div >{mem.user.userName}</div>
-
-                                                )
-
-                                            })
+                                    <td>{item.meetingId}</td>
+                                    <td>{item.passcode}</td>
+                                    <td><div class="col-md-12 mt-3 ">
+                                        <a href='https://us05web.zoom.us/signin#/previous' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>Join</span></a>
+                                    </div></td>
 
 
-                                        }
-                                    </td>
 
 
 
@@ -166,4 +160,4 @@ class groups extends Component {
 
 }
 
-export default groups;
+export default meetings;
