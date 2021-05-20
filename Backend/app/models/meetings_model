@@ -1,0 +1,31 @@
+var mongoose = require('mongoose');
+
+var meetings_schema = new mongoose.Schema({
+
+
+
+    name:
+    {type:String
+    },
+
+    date:{
+        type:Date
+    },
+    meetingId:{
+        type:String,
+ 
+    },
+   passcode:{
+       type:String,
+  
+   },
+
+
+
+
+});
+
+var meetings = mongoose.model('meetings', meetings_schema);
+
+module.exports = meetings;
+
