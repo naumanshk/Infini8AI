@@ -14,6 +14,10 @@ import Groups from './groups/groups.js'
 // import Tasks from './tasks/tasks.js'
 import Tasks2 from './tasks/tasks-2.js'
 import Meetings from './zoom/meetings.js'
+import Chat from './chatting/WelcomeScreen.js'
+import ChatS from './chatting/ChatScreen'
+
+
 
 
 // import AddMeetings from './zoom/meetingForm.js'
@@ -49,16 +53,12 @@ class home extends Component {
             <Route exact path="/employees/meetings" component={Meetings} />
             <Route exact path="/employees/groups" component={Groups} />
             <Route exact path="/employees/tasks2" component={Tasks2} />
+
+            <Route exact path="/employees/chat" component={Chat} />
+            <Route exact path="/employees/chats" component={ChatS} />
+            
+
            
-
-            {/* <Route exact path="/admin/sub" component={Sub} />
-
-            <Route exact path="/admin/addgroups" component={Addgroups} />
-            <Route exact path="/admin/addtasks" component={AddTasks} />
-            <Route exact path="/admin/tasks" component={Tasks} />
-            <Route exact path="/admin/tasks2" component={Tasks2} />
-          
-            <Route exact path="/admin/addmeetings" component={AddMeetings} /> */}
 
 
 

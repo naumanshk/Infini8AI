@@ -15,6 +15,10 @@ import Tasks from './tasks/tasks.js'
 import Tasks2 from './tasks/tasks-2.js'
 import Meetings from './zoom/meetings.js'
 import AddMeetings from './zoom/meetingForm.js'
+import Chat from './chatting/WelcomeScreen'
+import ChatS from './chatting/ChatScreen.js'
+
+
 
 
 
@@ -53,6 +57,11 @@ class home extends Component {
             <Route exact path="/admin/tasks2" component={Tasks2} />
             <Route exact path="/admin/meetings" component={Meetings} />
             <Route exact path="/admin/addmeetings" component={AddMeetings} />
+
+            <Route exact path="/admin/chat" component={Chat} />
+            <Route exact path="/admin/chats" component={ChatS} />
+
+
 
 
 
