@@ -16,6 +16,8 @@ import Tasks2 from './tasks/tasks-2.js'
 import Meetings from './zoom/meetings.js'
 import Chat from './chatting/WelcomeScreen.js'
 import ChatS from './chatting/ChatScreen'
+import Profile from './profile'
+
 
 
 
@@ -56,6 +58,8 @@ class home extends Component {
 
             <Route exact path="/employees/chat" component={Chat} />
             <Route exact path="/employees/chats" component={ChatS} />
+            <Route exact path="/employees/profile" component={Profile} />
+
             
 
            

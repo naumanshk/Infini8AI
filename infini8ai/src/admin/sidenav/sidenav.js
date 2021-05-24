@@ -109,6 +109,12 @@ function ResponsiveDrawer(props) {
                         <ListItemText primary='Admin' />
                     </ListItem>
                 </Link>
+                <Link to='/admin/profile'>
+                    <ListItem className='nav-links text-white' button key='meetings'>
+                        <ListItemIcon><InboxIcon /></ListItemIcon>
+                        <ListItemText primary='Profile' />
+                    </ListItem>
+                </Link>
                 <Link to='/admin/sub'>
                     <ListItem className='nav-links text-white' button key='verification'>
                         <ListItemIcon><InboxIcon /></ListItemIcon>

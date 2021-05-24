@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import '../../App.css';
 import '../../config';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect ,Link} from "react-router-dom";
+import {
 
+    Badge
+} from "@material-ui/core";
 
+import MailIcon from '@material-ui/icons/Mail';
 import { Container, NavItem, Table } from 'reactstrap';
 import firebase from 'firebase'
 
@@ -93,6 +97,7 @@ class groups extends Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Members</th>
+                            <th>Chat</th>
 
 
                         </tr>
@@ -117,6 +122,19 @@ class groups extends Component {
 
 
                                         }
+                                    </td>
+                                    <td>
+                                        <div style={{ paddingTop: '16px' }}>
+
+                                            <Link to={{ pathname: '/employees/chats', state: { room: item._id, email: localStorage.getItem('email'), chatWith: item.name, profileOf: item.profileImg } }} >
+
+                                                <Badge variant='dot' color="error">
+                                                    <MailIcon />
+                                                </Badge>
+                                            </Link>
+
+
+                                        </div>
                                     </td>
 
 

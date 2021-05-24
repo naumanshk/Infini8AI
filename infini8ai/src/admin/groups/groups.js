@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import '../../App.css';
 import '../../config';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect ,Link} from "react-router-dom";
+import {
 
+    Badge
+} from "@material-ui/core";
 
 import { Container, NavItem, Table } from 'reactstrap';
 import firebase from 'firebase'
-
+import MailIcon from '@material-ui/icons/Mail';
 
 import { get } from 'axios'
 require('dotenv').config()
@@ -81,10 +84,10 @@ class groups extends Component {
             <Container>
                 <h1 className='section-headings base-color padding-bottom-10'>Groups
                 <div class="col-md-12 mt-3 ">
-                                    <a href='/admin/addgroups' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
-                                </div>
+                        <a href='/admin/addgroups' class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>ADD</span></a>
+                    </div>
                 </h1>
-                
+
 
                 <Table>
                     <thead>
@@ -92,6 +95,7 @@ class groups extends Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Members</th>
+                            <th>Chat</th>
 
 
                         </tr>
@@ -116,6 +120,19 @@ class groups extends Component {
 
 
                                         }
+                                    </td>
+                                    <td>
+                                        <div style={{ paddingTop: '16px' }}>
+
+                                            <Link to={{ pathname: '/admin/chats', state: { room: item._id, email: localStorage.getItem('email'), chatWith: item.name, profileOf: item.profileImg } }} >
+
+                                                <Badge variant='dot' color="error">
+                                                    <MailIcon />
+                                                </Badge>
+                                            </Link>
+
+
+                                        </div>
                                     </td>
 
 

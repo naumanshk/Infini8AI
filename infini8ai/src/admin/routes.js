@@ -17,6 +17,8 @@ import Meetings from './zoom/meetings.js'
 import AddMeetings from './zoom/meetingForm.js'
 import Chat from './chatting/WelcomeScreen'
 import ChatS from './chatting/ChatScreen.js'
+import Profile from './profile.js'
+
 
 
 
@@ -60,6 +62,8 @@ class home extends Component {
 
             <Route exact path="/admin/chat" component={Chat} />
             <Route exact path="/admin/chats" component={ChatS} />
+            <Route exact path="/admin/profile" component={Profile} />
+
 
 
 

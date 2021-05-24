@@ -64,7 +64,7 @@ class loginComponent extends Component {
                         localStorage.setItem("Employee", user.userName)
                         localStorage.setItem("Login", true)
 
-                        // localStorage.setItem("Profile", user.profileImg)
+                        localStorage.setItem("Profile", user.profileImg)
 
                         localStorage.setItem("employeeId", user.id)
                         localStorage.setItem("email", this.state.email)

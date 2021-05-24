@@ -170,7 +170,7 @@ class ChatScreen extends React.Component {
         </Backdrop>
         <AppBar style={{background:'#04B2AE'}} elevation={10}>
           <Toolbar style={{marginLeft:'250px'}}>
-          <img  style={{width:'50px', height:'50px',marginRight:'10px'}} src={this.state.profileImg}></img>
+          <img  style={{width:'50px', height:'50px',marginRight:'10px'}} src={this.state.profileImg !=null ? this.state.profileImg : '/logo.png'}></img>
             <Typography variant="h6">
           
               {` ${this.state.chatWith}`}
