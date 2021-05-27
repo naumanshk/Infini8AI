@@ -15,7 +15,7 @@ import {
 import { Send } from "@material-ui/icons";
 import axios from "axios";
 import ChatItem from "./ChatItem";
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 
 const Chat = require("twilio-chat");
@@ -32,7 +32,9 @@ class ChatScreen extends React.Component {
       new:false,
       count:0,
       chatWith:'',
-      profileImg:""
+      profileImg:"",
+      uid:'',
+      fcmToken:''
     };
 
     this.scrollDiv = React.createRef();
@@ -58,7 +60,8 @@ class ChatScreen extends React.Component {
 
 
 
-    this.setState({ loading: true ,chatWith:this.props.location.state.chatWith,profileImg:this.props.location.state.profileOf});
+    this.setState({ loading: true,uid:this.props.location.state.uid ,chatWith:this.props.location.state.chatWith,
+      profileImg:this.props.location.state.profileOf},()=>{this.getFCM()});
 
     try {
       token = await this.getToken(email);
@@ -151,9 +154,40 @@ class ChatScreen extends React.Component {
       this.setState({ loading: true });
       channel && channel.sendMessage(text);
       this.setState({ text: "", loading: false });
-    }
+
+      axios({
+        method: 'post', //you can set what request you want to be
+        url: 'https://fcm.googleapis.com/fcm/send',
+        data:{
+            notification:{
+                "title":"New Notification",
+                "body":"Notification by "+localStorage.getItem('Employee'),
+                "sound":"default"
+            },
+            data:{
+                "param1":"value1"
+            },
+                "to":this.state.fcmToken,
+                "priority":"high"
+        },  
+        headers: {
+            Authorization: 'Bearer ' + 'AAAAyaoIwWQ:APA91bE77Zb-HPbG4QioR9QQZQgB0zzUPLzJeghL7rsJ0l7DRpXFn4kPOzLsTsK9H5u0GHZr1OrshKrtAcA6CbyZKyXPkz-mpnupQeYlLSfh22tWdrhs_3mLgL3VkU1DyWDKCuTziqtX'
+        }
+    }).then(res=>console.log("send"+res))
+  }
   };
   
+  getFCM(){
+
+    firebase.database().ref("FCM").once("value").then(snapshot => {
+      snapshot.forEach(user=>{
+        console.log(user.val())
+        if(user.key==this.state.uid){
+          this.setState({fcmToken:user.val().fcmToken})
+        }
+      })
+    })
+    }
 
   render() {
     const { loading, text, messages, channel } = this.state;

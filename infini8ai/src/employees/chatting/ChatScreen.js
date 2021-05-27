@@ -15,7 +15,7 @@ import {
 import { Send } from "@material-ui/icons";
 import axios from "axios";
 import ChatItem from "./ChatItem";
-import * as firebase from 'firebase'
+import  firebase from 'firebase'
 
 
 const Chat = require("twilio-chat");
@@ -32,7 +32,9 @@ class ChatScreen extends React.Component {
       new:false,
       count:0,
       chatWith:'',
-      profileImg:""
+      profileImg:"",
+      uid:'',
+      fcmToken:''
     };
 
     this.scrollDiv = React.createRef();
@@ -58,7 +60,8 @@ class ChatScreen extends React.Component {
 
 
 
-    this.setState({ loading: true ,chatWith:this.props.location.state.chatWith,profileImg:this.props.location.state.profileOf});
+    this.setState({ loading: true,uid:this.props.location.state.uid ,
+      chatWith:this.props.location.state.chatWith,profileImg:this.props.location.state.profileOf},()=>{this.getFCM()});
 
     try {
       token = await this.getToken(email);
@@ -67,7 +70,7 @@ class ChatScreen extends React.Component {
     }
 
     const client = await Chat.Client.create(token);
-
+// this.check(client)
     client.on("tokenAboutToExpire", async () => {
       const token = await this.getToken(email);
       client.updateToken(token);
@@ -132,6 +135,7 @@ class ChatScreen extends React.Component {
       ()=>{
         console.log(this.state.messages)
         console.log(this.state.count)
+        
         this.scrollToBottom()
       }
      
@@ -152,8 +156,70 @@ class ChatScreen extends React.Component {
       channel && channel.sendMessage(text);
       this.setState({ text: "", loading: false });
     }
+    axios({
+      method: 'post', //you can set what request you want to be
+      url: 'https://fcm.googleapis.com/fcm/send',
+      data:{
+          notification:{
+              "title":"New Notification",
+              "body":"Notification by "+ localStorage.getItem('Employee'),
+              "sound":"default"
+          },
+          data:{
+              "param1":"value1"
+          },
+              "to":this.state.fcmToken,
+              "priority":"high"
+      },  
+      headers: {
+          Authorization: 'Bearer ' + 'AAAAyaoIwWQ:APA91bE77Zb-HPbG4QioR9QQZQgB0zzUPLzJeghL7rsJ0l7DRpXFn4kPOzLsTsK9H5u0GHZr1OrshKrtAcA6CbyZKyXPkz-mpnupQeYlLSfh22tWdrhs_3mLgL3VkU1DyWDKCuTziqtX'
+      }
+  }).then(res=>console.log("send"+res))
   };
+
+  getFCM(){
+
+    firebase.database().ref("FCM").once("value").then(snapshot => {
+      snapshot.forEach(user=>{
+        console.log(user.val())
+        if(user.key==this.state.uid){
+          this.setState({fcmToken:user.val().fcmToken})
+        }
+      })
+    })
+    }
+
   
+  // check(chatClientInstance) {
+  //   // navigator.serviceWorker.register('/serviceWorker.js')
+  //   if (firebase && firebase.messaging()) {
+  //     // requesting permission to use push notifications
+
+  //     firebase.messaging().requestPermission().then(() => {
+  //       // getting FCM token
+  //       firebase.messaging().getToken({vapidKey: "BJj1KpwcyLWOYu5l_RBRsaSLjn5LXIQGlmYM6lmBBu1XAPUtmCrOn1VNwD_97u1boOxR04rk4mkaZuxDFpj_uuM"}).then((fcmToken) => {
+
+  //         console.log(fcmToken)
+  //         chatClientInstance.setPushRegistrationId('fcm', fcmToken);
+
+  //         // registering event listener on new message from firebase to pass it to the Chat SDK for parsing
+  //         firebase.messaging().onMessage(payload => {
+  //           chatClientInstance.handlePushNotification(payload);
+  //           console.log(payload)
+  //         });
+
+  //       }).catch((err) => {
+  //         // can't get token
+  //         console.log(err)
+  //       });
+  //     }).catch((err) => {
+  //       console.log(err+"2")
+  //       // can't request permission or permission hasn't been granted to the web app by the user
+  //     });
+  //   } else {
+  //     // no Firebase library imported or Firebase library wasn't correctly initialized
+  //   }
+  // }
 
   render() {
     const { loading, text, messages, channel } = this.state;

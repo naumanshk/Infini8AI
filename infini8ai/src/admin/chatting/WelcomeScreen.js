@@ -34,6 +34,7 @@ class WelcomeScreen extends React.Component {
       chatWith: '',
       princiImg: '',
       employees: [],
+      uid:'',
       newnotification: [
         {
           author: '',
@@ -89,6 +90,7 @@ class WelcomeScreen extends React.Component {
     } catch {
       console.log('not joined')
     }
+    
 
   }
 
@@ -144,6 +146,7 @@ class WelcomeScreen extends React.Component {
     console.log(data.token)
     return data.token;
   };
+
 
 
   getNotifications = async () => {
@@ -234,7 +237,7 @@ class WelcomeScreen extends React.Component {
 
 
 
-      }).then(this.setState({ redirect: true, room: localStorage.getItem('employeeId') + empId, chatWith: name, princiImg: profileImg, email: localStorage.getItem('email') }))
+      }).then(this.setState({ redirect: true, uid:empId,room: localStorage.getItem('employeeId') + empId, chatWith: name, princiImg: profileImg, email: localStorage.getItem('email') }))
     }
 
   };
@@ -242,7 +245,7 @@ class WelcomeScreen extends React.Component {
   render() {
     const { email, room } = this.state;
     if (this.state.redirect) {
-      return <Redirect to={{ pathname: '/admin/chats', state: { room: this.state.room, email: localStorage.getItem('email'), chatWith: this.state.chatWith, profileOf: this.state.princiImg } }} />
+      return <Redirect to={{ pathname: '/admin/chats', state: {uid:this.state.uid, room: this.state.room, email: localStorage.getItem('email'), chatWith: this.state.chatWith, profileOf: this.state.princiImg } }} />
     }
     // if (this.state.redirect) {
     //   return <Redirect to={{ pathname: '/student/chat', state:{room: this.state.room,email:'naumanshk3@gmail.com'} }}  />

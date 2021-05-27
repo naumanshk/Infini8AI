@@ -29,6 +29,32 @@ class loginComponent extends Component {
         }
     }
 
+    fcm(uid) {
+        firebase.messaging().requestPermission().then(() => {
+            firebase.messaging().getToken({vapidKey: "BJj1KpwcyLWOYu5l_RBRsaSLjn5LXIQGlmYM6lmBBu1XAPUtmCrOn1VNwD_97u1boOxR04rk4mkaZuxDFpj_uuM"}).then((currentToken) => {
+                if (currentToken) {
+                    console.log(currentToken)
+                    firebase.database().ref("FCM").child(uid).set({
+                        fcmToken: currentToken,
+                
+                    }).then(() => {
+                        console.log('Token Generated and store' + currentToken)
+                    })
+                } else {
+                    
+                    console.log('No registration token available. Request permission to generate one.');
+                   
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+            });
+          }).catch((err) => {
+            console.log("Permission Denied")
+          });
+     
+    }
+
     verify(e) {
         this.setState({ loading: true })
         this.setState({ error: '' })
@@ -63,7 +89,7 @@ class loginComponent extends Component {
                         this.setState({ userExists: true });
                         localStorage.setItem("Employee", user.userName)
                         localStorage.setItem("Login", true)
-
+                        this.fcm(user.id)
                         localStorage.setItem("Profile", user.profileImg)
 
                         localStorage.setItem("employeeId", user.id)

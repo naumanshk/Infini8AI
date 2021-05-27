@@ -126,7 +126,7 @@ class groups extends Component {
                                     <td>
                                         <div style={{ paddingTop: '16px' }}>
 
-                                            <Link to={{ pathname: '/employees/chats', state: { room: item._id, email: localStorage.getItem('email'), chatWith: item.name, profileOf: item.profileImg } }} >
+                                            <Link to={{ pathname: '/employees/chats', state: { room: item._id, email: `${localStorage.getItem('email') } Group`, chatWith: item.name, profileOf: item.profileImg } }} >
 
                                                 <Badge variant='dot' color="error">
                                                     <MailIcon />

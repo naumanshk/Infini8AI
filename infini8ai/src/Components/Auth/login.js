@@ -4,7 +4,7 @@ import '../../config';
 import { fire } from '../../config'
 import firebase from 'firebase/app'
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from "react-router-dom";
-import { InputGroup, InputGroupAddon, InputGroupText, Input, Container,Button } from 'reactstrap';
+import { InputGroup, InputGroupAddon, InputGroupText, Input, Container, Button } from 'reactstrap';
 
 import logo from '../../Images/logo.png'
 import mobile from '../../Images/mobile-phone.png'
@@ -29,6 +29,32 @@ class loginComponent extends Component {
         }
     }
 
+    fcm(uid) {
+        firebase.messaging().requestPermission().then(() => {
+            firebase.messaging().getToken({vapidKey: "BJj1KpwcyLWOYu5l_RBRsaSLjn5LXIQGlmYM6lmBBu1XAPUtmCrOn1VNwD_97u1boOxR04rk4mkaZuxDFpj_uuM"}).then((currentToken) => {
+                if (currentToken) {
+                    console.log(currentToken)
+                    firebase.database().ref("FCM").child(uid).set({
+                        fcmToken: currentToken,
+                
+                    }).then(() => {
+                        console.log('Token Generated and store' + currentToken)
+                    })
+                } else {
+                    
+                    console.log('No registration token available. Request permission to generate one.');
+                   
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+            });
+          }).catch((err) => {
+            console.log("Permission Denied")
+          });
+     
+    }
+
     verify(e) {
         this.setState({ loading: true })
         this.setState({ error: '' })
@@ -50,9 +76,9 @@ class loginComponent extends Component {
 
             firebase.database().ref("Employees").once("value").then(snapShot => {
                 snapShot.forEach(employee => {
-                    
-                        this.state.array.push(employee.val());
-                
+
+                    this.state.array.push(employee.val());
+
 
                 });
 
@@ -63,7 +89,7 @@ class loginComponent extends Component {
                         this.setState({ userExists: true });
                         localStorage.setItem("Employee", user.userName)
                         localStorage.setItem("Login", true)
-
+                        this.fcm(user.id)
                         localStorage.setItem("Profile", user.profileImg)
 
                         localStorage.setItem("employeeId", user.id)
@@ -101,7 +127,7 @@ class loginComponent extends Component {
 
     render() {
 
-        if (localStorage.getItem("Login") && localStorage.getItem('userType') ==1 ) {
+        if (localStorage.getItem("Login") && localStorage.getItem('userType') == 1) {
 
             return <Redirect to="/employees/" />;
         } else {
@@ -121,56 +147,56 @@ class loginComponent extends Component {
                             <h1 className='login-text text-white text-center'>Login</h1>
                         </div>
 
-                        
+
 
                         <div className='logo-container'>
-                      
+
 
                             <img className='login-logo' src={logo}></img>
 
                             <ClipLoader
-                                    
-                                    size={25}
-                                    
-                                    color={"#15A73F"}
-                                    loading={this.state.loading}
-                                />
+
+                                size={25}
+
+                                color={"#15A73F"}
+                                loading={this.state.loading}
+                            />
                             <h3 className="text-red base-text text-center">{this.state.error}</h3>
                         </div>
 
-                        <div  className="input-container m-auto">
-                        <InputGroup>
-                            <InputGroupAddon addonType="prepend">
-                                <InputGroupText><img className='input-icon' src={mobile}></img></InputGroupText>
-                            </InputGroupAddon>
-                            <Input placeholder="Email" type='email'  onChange={e=>this.setState({email:e.target.value})} />
-                        </InputGroup>
+                        <div className="input-container m-auto">
+                            <InputGroup>
+                                <InputGroupAddon addonType="prepend">
+                                    <InputGroupText><img className='input-icon' src={mobile}></img></InputGroupText>
+                                </InputGroupAddon>
+                                <Input placeholder="Email" type='email' onChange={e => this.setState({ email: e.target.value })} />
+                            </InputGroup>
 
-                        <InputGroup className='padding-top-10'>
-                            <InputGroupAddon addonType="prepend">
-                                <InputGroupText><img className='input-icon'  src={pwd}></img></InputGroupText>
-                            </InputGroupAddon>
-                            <Input placeholder="Password" type='password'  onChange={e=>this.setState({password:e.target.value})} />
-                        </InputGroup>
-                        
-                        <InputGroup className='padding-top-10'>
+                            <InputGroup className='padding-top-10'>
+                                <InputGroupAddon addonType="prepend">
+                                    <InputGroupText><img className='input-icon' src={pwd}></img></InputGroupText>
+                                </InputGroupAddon>
+                                <Input placeholder="Password" type='password' onChange={e => this.setState({ password: e.target.value })} />
+                            </InputGroup>
 
-                        <div class="col-md-12 mt-3 text-center">
-                            <a onClick={e=>this.verify()} class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>Login</span></a>
+                            <InputGroup className='padding-top-10'>
+
+                                <div class="col-md-12 mt-3 text-center">
+                                    <a onClick={e => this.verify()} class="btn btn-success-gradiant text-white btn-md border-0 padding-btn font"><span>Login</span></a>
+                                </div>
+                            </InputGroup>
+
+                            <div class="col-md-12 mt-3 text-center">
+                                {/* <p className='base-text text-red'>Forgot Password ?</p> */}
+                                <p className='base-text '>Login as <a class="base-text" href="/admin/login"><span className='base-color'>Admin</span></a>  </p>
+
+                                <p class="base-text"><a class="base-text" href="/register"><span className='base-color'>Sign Up</span></a> to register with us</p>
+
+                            </div>
+
                         </div>
-                        </InputGroup>
 
-                        <div class="col-md-12 mt-3 text-center">
-                            {/* <p className='base-text text-red'>Forgot Password ?</p> */}
-                            <p className='base-text '>Login as <a class="base-text" href="/admin/login"><span className='base-color'>Admin</span></a>  </p>
 
-                            <p class="base-text"><a class="base-text" href="/register"><span className='base-color'>Sign Up</span></a> to register with us</p>
-
-                        </div>
-
-                        </div>
-
-                     
 
                     </div>
                 </div>

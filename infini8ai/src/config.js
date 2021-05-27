@@ -13,5 +13,7 @@ var firebaseConfig = {
 
   const fire = firebase.initializeApp(firebaseConfig);
   const storage = firebase.storage();
-  export {fire, storage as default} ;
+  const messaging = firebase.messaging();
+
+  export {fire, storage , messaging as default} ;
 

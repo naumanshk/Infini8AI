@@ -33,13 +33,14 @@ const chatToken = (identity ,room,config) => {
   
   let chatGrant;
 
-    chatGrant = new ChatGrant({ serviceSid: config.twilio.TWILIO_CHAT_SERVICE_SID,pushCredentialSid: 'CR6b747db825f5168e0cee1cfca0fc6e8b', });
+    chatGrant = new ChatGrant({ serviceSid: config.twilio.TWILIO_CHAT_SERVICE_SID,pushCredentialSid: 'CR08640493eb398ae32e5f9af0c18662e4', });
   
 
   
   const token = generateToken(config);
   token.addGrant(chatGrant);
   token.identity = identity;
+  console.log(chatGrant)
   return token;
 };
 

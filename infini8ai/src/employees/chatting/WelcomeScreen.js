@@ -72,8 +72,7 @@ class WelcomeScreen extends React.Component {
     const client = await Chat.Client.create(token);
 
 
-
-
+  
 
     try {
       this.state.chats.map((async items => {
@@ -121,6 +120,8 @@ class WelcomeScreen extends React.Component {
         () => {
           console.log(this.state.messages)
           console.log(this.state.notification)
+
+
           // this.getUnread(this.state.notification)
 
           //   firebase.database().ref("textNotification").child(this.state.newnotification.memberSid).set({
@@ -135,6 +136,8 @@ class WelcomeScreen extends React.Component {
       );
 
     }
+
+   
 
   };
 
@@ -212,6 +215,7 @@ class WelcomeScreen extends React.Component {
   }
 
 
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -252,6 +256,7 @@ class WelcomeScreen extends React.Component {
 
 
         <p style={{ fontSize: '16px' }} className='green' > Recived Messages</p>
+
         {this.state.chats.map((item, i) => {
           return (
             <div className='flex' style={{ flexDirection: 'row' }}>
@@ -279,11 +284,11 @@ class WelcomeScreen extends React.Component {
                     </CardContent>
                     <div style={{ paddingTop: '16px' }}>
 
-                    <Link to={{ pathname: '/employees/chats', state: { room: item.roomId, email: localStorage.getItem('email'), chatWith:item.adminName,profileOf:item.profileImg } }} >
-                        <Badge  variant='dot' color="error">
+                      <Link to={{ pathname: '/employees/chats', state: { uid:item.adminId, room: item.roomId, email: localStorage.getItem('email'), chatWith: item.adminName, profileOf: item.profileImg } }} >
+                        <Badge variant='dot' color="error">
                           <MailIcon />
                         </Badge>
-                        </Link>
+                      </Link>
 
 
 
